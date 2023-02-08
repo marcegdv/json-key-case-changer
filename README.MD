@@ -45,3 +45,7 @@ const result = convert(origin, snakeCase);
 ```
 
 Se pueden usar las otras funciones disponibles de la librería `change-case` o la que tengas.
+
+---
+
+[Versión en JavaScript](https://github.com/marcegdv/json-key-case-changer-js) (sin typescript)
