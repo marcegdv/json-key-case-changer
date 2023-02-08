@@ -1,4 +1,4 @@
-# Cambiar el 'case' de las claves de un objeto JSON
+# Cambiar el 'case' de las claves de un JSON
 
 Mediante la librería `change-case` se ajustan las claves de un objeto JSON, ya que a veces hay que trabajar con objetos que las claves estan en camelCase y también tienen que estar en snake_case.
 
