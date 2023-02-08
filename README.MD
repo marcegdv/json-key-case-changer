@@ -35,7 +35,7 @@ const expected = {
 }
 ```
 
-## Función convert(input, startegy):
+## Función convert(input, strategy):
 
 Es la que realiza la conversión del ejemplo:
 ```js
