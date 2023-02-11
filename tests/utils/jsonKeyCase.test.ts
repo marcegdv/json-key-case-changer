@@ -1,11 +1,5 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import {
-    convert,
-    isList,
-    isObject,
-    isScalar,
-    jstr,
-} from "../../src/utils/jsonKeyCase";
+import { convert, isList, isObject, isScalar, jstr } from "../../src/utils/jsonKeyCase";
 
 describe('jsonKeyCase functions test:', () => {
 
@@ -63,20 +57,20 @@ describe('jsonKeyCase functions test:', () => {
 
     describe('isList tests:', () => {
 
-        test('isList with a boolean return true', () => {
+        test('isList with a boolean return false', () => {
             expect(isList(false as unknown as Array<boolean>)).toBeFalsy();
         });
-        test('isList with a number return true', () => {
+        test('isList with a number return false', () => {
             expect(isList(123 as unknown as Array<number>)).toBeFalsy();
         });
-        test('isList with a string return true', () => {
+        test('isList with a string return false', () => {
             expect(isList('abc' as unknown as Array<string>)).toBeFalsy();
         });
         test('isList with an object return false', () => {
             const obj = { id: 1 };
             expect(isList(obj as unknown as Array<Object>)).toBeFalsy();
         });
-        test('isList with an array return false', () => {
+        test('isList with an array return true', () => {
             const obj = [1, 2, 3];
             expect(isList(obj as unknown as number)).toBeTruthy();
         });
@@ -97,19 +91,19 @@ describe('jsonKeyCase functions test:', () => {
 
     describe('isObject tests:', () => {
 
-        test('isObject with a boolean return true', () => {
+        test('isObject with a boolean return false', () => {
             expect(isObject(false as unknown as Object)).toBeFalsy();
         });
-        test('isObject with a number return true', () => {
+        test('isObject with a number return false', () => {
             expect(isObject(123 as unknown as Object)).toBeFalsy();
         });
-        test('isObject with a string return true', () => {
+        test('isObject with a string return false', () => {
             expect(isObject('abc' as unknown as Object)).toBeFalsy();
         });
         test('isObject with empty object, return true', () => {
             expect(isObject({} as unknown as Object)).toBeTruthy();
         });
-        test('isObject with an object return false', () => {
+        test('isObject with an object return true', () => {
             const obj = { id: 1 };
             expect(isObject(obj)).toBeTruthy();
         });
@@ -175,7 +169,7 @@ describe('jsonKeyCase functions test:', () => {
                     city: 'LA',
                 },
             };
-            expect(convert(origin,snakeCase)).toStrictEqual(expected);
+            expect(convert(origin, snakeCase)).toStrictEqual(expected);
         });
         test('with a simple list in snake_case and camelCase strategy, return same list in camelCase', () => {
             const origin: any = [
@@ -202,7 +196,7 @@ describe('jsonKeyCase functions test:', () => {
                     userPassword: '12tres',
                 },
             ];
-            expect(convert(origin,camelCase)).toStrictEqual(expected);
+            expect(convert(origin, camelCase)).toStrictEqual(expected);
         });
 
     });
