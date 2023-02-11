@@ -1,4 +1,4 @@
-# Cambiar el 'case' de las claves de un objeto JSON
+# Cambiar el 'case' de las claves de un JSON
 
 Mediante la librería `change-case` se ajustan las claves de un objeto JSON, ya que a veces hay que trabajar con objetos que las claves estan en camelCase y también tienen que estar en snake_case.
 
@@ -35,7 +35,7 @@ const expected = {
 }
 ```
 
-## Función convert(input, startegy):
+## Función convert(input, strategy):
 
 Es la que realiza la conversión del ejemplo:
 ```js
@@ -45,3 +45,7 @@ const result = convert(origin, snakeCase);
 ```
 
 Se pueden usar las otras funciones disponibles de la librería `change-case` o la que tengas.
+
+---
+
+[Versión en JavaScript](https://github.com/marcegdv/json-key-case-changer-js) (sin typescript)
