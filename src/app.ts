@@ -17,7 +17,8 @@ export const main = (): number => {
                         user_name: 'user2',
                     },
                 ],
-            }
+                other: null,
+            },
         ];
 
     const result: any = convert(data, strategy);

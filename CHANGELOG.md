@@ -1,3 +1,7 @@
+## v1.0.3
+
+- Fix valores null.
+
 ## v1.0.2
 
 - Se crea la versión V1 de los tests, implementando test.each para reducir y limpiar el código.

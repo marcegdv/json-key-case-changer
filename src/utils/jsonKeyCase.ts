@@ -29,7 +29,7 @@ export const convert = (input: any, strategy: Function): any => {
                 const newKey: string = strategy(key);
                 if (isList(value) || isObject(value)) {
                     converted[newKey] = convert(value, strategy);
-                } else if (isScalar(value)) {
+                } else if (isScalar(value) || value === null) {
                     converted[newKey] = value;
                 };
             }
