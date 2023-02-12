@@ -1,3 +1,7 @@
+## v1.0.5
+
+- Casos de pruebas agregados.
+
 ## v1.0.4
 
 - Fix valores Date.
