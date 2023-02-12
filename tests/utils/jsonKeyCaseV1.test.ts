@@ -3,7 +3,7 @@
  * testear los mismos casos que en el archivo original.
 */
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
+import { convert, isList, isObject } from "../../src/utils/jsonKeyCase";
 
 const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
@@ -19,18 +19,6 @@ const dataTest: any[] = [
 ];
 
 describe('jsonKeyCase functions test:', () => {
-
-    describe('isValue() tests:', () => {
-        const isScalarDataTest = [...dataTest];
-        isScalarDataTest[0] = { ...dataTest[0] }; isScalarDataTest[0].output = true;
-        isScalarDataTest[1] = { ...dataTest[1] }; isScalarDataTest[1].output = true;
-        isScalarDataTest[2] = { ...dataTest[2] }; isScalarDataTest[2].output = true;
-        isScalarDataTest[7] = { ...dataTest[7] }; isScalarDataTest[7].output = true;
-        isScalarDataTest[8] = { ...dataTest[8] }; isScalarDataTest[8].output = true;
-        test.each(isScalarDataTest)('isValue($name) = $output', ({ input, output }) => {
-            expect(isValue(input)).toEqual(output);
-        });
-    });
 
     describe('isList() tests:', () => {
         const isListDataTest = [...dataTest];

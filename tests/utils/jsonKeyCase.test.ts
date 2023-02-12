@@ -1,41 +1,7 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
+import { convert, isList, isObject } from "../../src/utils/jsonKeyCase";
 
 describe('jsonKeyCase functions test:', () => {
-
-    describe('isValue tests:', () => {
-
-        test('isValue with a boolean return true', () => {
-            expect(isValue(false)).toBeTruthy();
-        });
-        test('isValue with a number return true', () => {
-            expect(isValue(123)).toBeTruthy();
-        });
-        test('isValue with a string return true', () => {
-            expect(isValue('abc')).toBeTruthy();
-        });
-        test('isValue with an Date return true', () => {
-            const obj = new Date;
-            expect(isValue(obj)).toBeTruthy();
-        });
-        test('isValue with null return true', () => {
-            const obj = null;
-            expect(isValue(obj)).toBeTruthy();
-        });
-        test('isValue with an object return false', () => {
-            const obj = { id: 1 };
-            expect(isValue(obj as unknown as boolean)).toBeFalsy();
-        });
-        test('isValue with an array return false', () => {
-            const obj = [1, 2, 3];
-            expect(isValue(obj as unknown as number)).toBeFalsy();
-        });
-        test('isValue with undefined return false', () => {
-            const obj = undefined;
-            expect(isValue(obj as unknown as boolean)).toBeFalsy();
-        });
-
-    });
 
     describe('isList tests:', () => {
 
