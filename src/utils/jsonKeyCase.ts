@@ -18,11 +18,7 @@ export const convert = (input: any, strategy: Function): any => {
             (key: string) => {
                 const value: any = input[key];
                 const newKey: string = strategy(key);
-                if (isList(value) || isObject(value)) {
-                    converted[newKey] = convert(value, strategy);
-                } else {
-                    converted[newKey] = value;
-                };
+                converted[newKey] = convert(value, strategy);
             }
         );
         return converted;
