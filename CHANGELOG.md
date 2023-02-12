@@ -1,3 +1,7 @@
+## v1.0.4
+
+- Fix valores Date.
+
 ## v1.0.3
 
 - Fix valores null.

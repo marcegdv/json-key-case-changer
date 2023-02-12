@@ -1,9 +1,11 @@
-export const isScalar = (value: boolean | number | string): boolean => {
+export const isValue = (value: boolean | number | string | Date | null): boolean => {
     const isBoolean: boolean = typeof value === 'boolean';
     const isNumber: boolean = typeof value === 'number';
     const isString: boolean = typeof value === 'string';
+    const isDate: boolean = value instanceof Date;
+    const isNull: boolean = value === null;
 
-    return isBoolean || isNumber || isString;
+    return isBoolean || isNumber || isString || isDate || isNull;
 };
 
 export const isObject = (object: any): boolean => {
@@ -29,7 +31,7 @@ export const convert = (input: any, strategy: Function): any => {
                 const newKey: string = strategy(key);
                 if (isList(value) || isObject(value)) {
                     converted[newKey] = convert(value, strategy);
-                } else if (isScalar(value) || value === null) {
+                } else if (isValue(value)) {
                     converted[newKey] = value;
                 };
             }
@@ -39,5 +41,3 @@ export const convert = (input: any, strategy: Function): any => {
     };
     return converted;
 };
-
-export const jstr = (obj: any): any => JSON.stringify(obj, undefined, 4);

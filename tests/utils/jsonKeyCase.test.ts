@@ -1,56 +1,38 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import { convert, isList, isObject, isScalar, jstr } from "../../src/utils/jsonKeyCase";
+import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
 
 describe('jsonKeyCase functions test:', () => {
 
-    describe('jstr tests:', () => {
+    describe('isValue tests:', () => {
 
-        test('with a scalar, return a string', () => {
-            expect(jstr(false)).toEqual('false');
-            expect(jstr(123)).toEqual('123');
-            expect(jstr('abc')).toEqual("\"abc\"");
+        test('isValue with a boolean return true', () => {
+            expect(isValue(false)).toBeTruthy();
         });
-
-        test('with a list, return a string', () => {
-            expect(jstr([1, 2, 3])).toEqual("[\n    1,\n    2,\n    3\n]");
+        test('isValue with a number return true', () => {
+            expect(isValue(123)).toBeTruthy();
         });
-
-        test('with a object, return a string', () => {
-            expect(jstr({ id: 1 })).toEqual("{\n    \"id\": 1\n}");
+        test('isValue with a string return true', () => {
+            expect(isValue('abc')).toBeTruthy();
         });
-
-    });
-
-    describe('isScalar tests:', () => {
-
-        test('isScalar with a boolean return true', () => {
-            expect(isScalar(false)).toBeTruthy();
-        });
-        test('isScalar with a number return true', () => {
-            expect(isScalar(123)).toBeTruthy();
-        });
-        test('isScalar with a string return true', () => {
-            expect(isScalar('abc')).toBeTruthy();
-        });
-        test('isScalar with an object return false', () => {
-            const obj = { id: 1 };
-            expect(isScalar(obj as unknown as boolean)).toBeFalsy();
-        });
-        test('isScalar with an array return false', () => {
-            const obj = [1, 2, 3];
-            expect(isScalar(obj as unknown as number)).toBeFalsy();
-        });
-        test('isScalar with an array return false', () => {
+        test('isValue with an Date return true', () => {
             const obj = new Date;
-            expect(isScalar(obj as unknown as string)).toBeFalsy();
+            expect(isValue(obj)).toBeTruthy();
         });
-        test('isScalar with null return false', () => {
+        test('isValue with null return true', () => {
             const obj = null;
-            expect(isScalar(obj as unknown as number)).toBeFalsy();
+            expect(isValue(obj)).toBeTruthy();
         });
-        test('isScalar with undefined return false', () => {
+        test('isValue with an object return false', () => {
+            const obj = { id: 1 };
+            expect(isValue(obj as unknown as boolean)).toBeFalsy();
+        });
+        test('isValue with an array return false', () => {
+            const obj = [1, 2, 3];
+            expect(isValue(obj as unknown as number)).toBeFalsy();
+        });
+        test('isValue with undefined return false', () => {
             const obj = undefined;
-            expect(isScalar(obj as unknown as boolean)).toBeFalsy();
+            expect(isValue(obj as unknown as boolean)).toBeFalsy();
         });
 
     });
