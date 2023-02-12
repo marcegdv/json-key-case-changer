@@ -1,3 +1,7 @@
+## v1.0.5
+
+- Se simplificó el código.
+
 ## v1.0.4
 
 - Fix valores Date.
