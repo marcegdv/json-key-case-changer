@@ -101,9 +101,9 @@ describe('jsonKeyCase functions test:', () => {
                     'jd', 'Johny'
                 ],
                 location: {
-                    fullAddress: 'Fake street 123',
-                    city: 'LA',
-                    number: null,
+                    fullAddress: 'Fake street 123', city: 'LA', number: null,
+                    extraInfo: null,
+                    timeStamp: new Date,
                 },
             };
             const expected: any = {
@@ -114,9 +114,9 @@ describe('jsonKeyCase functions test:', () => {
                     'jd', 'Johny'
                 ],
                 location: {
-                    full_address: 'Fake street 123',
-                    city: 'LA',
-                    number: null,
+                    full_address: 'Fake street 123', city: 'LA', number: null,
+                    extra_info: null,
+                    time_stamp: new Date,
                 },
             };
             expect(convert(origin, snakeCase)).toStrictEqual(expected);
