@@ -14,6 +14,14 @@ describe('jsonKeyCase functions test:', () => {
         test('isObject with a string return false', () => {
             expect(isObject('abc' as unknown as Object)).toBeFalsy();
         });
+        test('isObject with an empty array return false', () => {
+            const obj: any[] = [];
+            expect(isObject(obj)).toBeFalsy();
+        });
+        test('isObject with an array return false', () => {
+            const obj = [1, 2, 3];
+            expect(isObject(obj as unknown as Object)).toBeFalsy();
+        });
         test('isObject with empty object, return true', () => {
             expect(isObject({} as unknown as Object)).toBeTruthy();
         });
@@ -21,11 +29,7 @@ describe('jsonKeyCase functions test:', () => {
             const obj = { id: 1 };
             expect(isObject(obj)).toBeTruthy();
         });
-        test('isObject with an array return false', () => {
-            const obj = [1, 2, 3];
-            expect(isObject(obj as unknown as Object)).toBeFalsy();
-        });
-        test('isObject with an array return false', () => {
+        test('isObject with a Date return false', () => {
             const obj = new Date;
             expect(isObject(obj as unknown as Object)).toBeFalsy();
         });
@@ -42,23 +46,29 @@ describe('jsonKeyCase functions test:', () => {
 
     describe('convert tests:', () => {
 
-        test('with an scalar and any strategy, return the scalar', () => {
+        test('with an value and any strategy, return the value', () => {
+            const date: Date = new Date;
             expect(convert(false, camelCase)).toEqual(false);
             expect(convert(123, snakeCase)).toEqual(123);
             expect(convert('abc', pascalCase)).toEqual('abc');
+            expect(convert(date, camelCase)).toEqual(date);
+            expect(convert(null, snakeCase)).toEqual(null);
         });
-        test('with a list of scalars and any startegy, return list of scalars', () => {
+        test('with a list of values and any startegy, return list of values', () => {
+            const date: Date = new Date;
             expect(convert([false, true], camelCase)).toEqual([false, true]);
             expect(convert([1, 2, 3], snakeCase)).toEqual([1, 2, 3]);
             expect(convert(['abc', '123'], pascalCase)).toEqual(['abc', '123']);
+            expect(convert([date, date], camelCase)).toEqual([date, date]);
+            expect(convert([null, null], camelCase)).toEqual([null, null]);
         });
-        test('with an empty list/object and any strategy, return the empty list', () => {
+        test('with an empty list/object and any strategy, return the empty list/object', () => {
             expect(convert([], camelCase)).toEqual([]);
             expect(convert([], snakeCase)).toEqual([]);
             expect(convert({}, camelCase)).toEqual({});
             expect(convert({}, snakeCase)).toEqual({});
         });
-        test('with a simple object in camelCase and snake_case strategy, return same object in snake_case', () => {
+        test('with an object in camelCase and snake_case strategy, return same object in snake_case', () => {
             const origin: any = {
                 id: 3,
                 firstName: 'John',
@@ -87,7 +97,7 @@ describe('jsonKeyCase functions test:', () => {
             };
             expect(convert(origin, snakeCase)).toStrictEqual(expected);
         });
-        test('with a simple list in snake_case and camelCase strategy, return same list in camelCase', () => {
+        test('with a list of objects in snake_case and camelCase strategy, return same list in camelCase', () => {
             const origin: any = [
                 {
                     id: 123,
