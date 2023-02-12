@@ -22,6 +22,8 @@ export const main = (): number => {
                 other: null,
                 start: new Date,
                 end: new Date(3333, 21, 31, 23, 59, 59, 999),
+                extra_data: {},
+                other_tags: [],
             },
         ];
 

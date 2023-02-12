@@ -5,6 +5,8 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
 import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
 
+const date: Date = new Date;
+
 const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
     { name: 'number', input: 123, output: false },
@@ -13,7 +15,7 @@ const dataTest: any[] = [
     { name: 'Array', input: [1, 2, 3], output: false },
     { name: 'empty Object', input: {}, output: false },
     { name: 'Object', input: { id: 1 }, output: false },
-    { name: 'Date', input: new Date, output: false },
+    { name: 'Date', input: date, output: false },
     { name: 'null', input: null, output: false },
     { name: 'undefined', input: undefined, output: false },
 ];
@@ -55,6 +57,8 @@ describe('jsonKeyCase functions test:', () => {
             { name: 'false', input: false, strategy: camelCase, output: false },
             { name: '123', input: 123, strategy: snakeCase, output: 123 },
             { name: 'abc', input: 'abc', strategy: pascalCase, output: 'abc' },
+            { name: 'Date', input: date, strategy: camelCase, output: date },
+            { name: 'null', input: null, strategy: snakeCase, output: null },
             { name: 'empty Array', input: [], strategy: camelCase, output: [] },
             { name: 'empty Array', input: [], strategy: snakeCase, output: [] },
             { name: 'empty Object', input: {}, strategy: camelCase, output: {} },
@@ -68,7 +72,7 @@ describe('jsonKeyCase functions test:', () => {
                     userAliasesList: ['jd', 'Johny'],
                     location: { fullAddress: 'Fake street 123', city: 'LA', number: null },
                     extraInfo: null,
-                    timeStamp: new Date,
+                    timeStamp: date,
                 },
                 strategy: snakeCase,
                 output: {
@@ -78,7 +82,7 @@ describe('jsonKeyCase functions test:', () => {
                     user_aliases_list: ['jd', 'Johny'],
                     location: { full_address: 'Fake street 123', city: 'LA', number: null },
                     extra_info: null,
-                    time_stamp: new Date,
+                    time_stamp: date,
                 }
             },
             {
