@@ -107,7 +107,8 @@ describe('jsonKeyCase functions test:', () => {
             expect(isObject(obj as unknown as Object)).toBeFalsy();
         });
         test('isObject with empty object, return true', () => {
-            expect(isObject({})).toBeTruthy();
+            const obj = {};
+            expect(isObject(obj)).toBeTruthy();
         });
         test('isObject with an object return true', () => {
             const obj = { id: 1 };
@@ -152,7 +153,7 @@ describe('jsonKeyCase functions test:', () => {
             expect(convert({}, camelCase)).toEqual({});
             expect(convert({}, snakeCase)).toEqual({});
         });
-        test('with a simple object in camelCase and snake_case strategy, return same object in snake_case', () => {
+        test('with an object in camelCase and snake_case strategy, return same object in snake_case', () => {
             const origin: any = {
                 id: 3,
                 firstName: 'John',
@@ -173,7 +174,7 @@ describe('jsonKeyCase functions test:', () => {
             };
             expect(convert(origin, snakeCase)).toStrictEqual(expected);
         });
-        test('with a simple list of objects in snake_case and camelCase strategy, return same list in camelCase', () => {
+        test('with a list of objects in snake_case and camelCase strategy, return same list in camelCase', () => {
             const origin: any = [
                 {
                     id: 123,
