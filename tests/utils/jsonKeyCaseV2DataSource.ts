@@ -1,13 +1,5 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
 
-export const jstrDataTest: Record<string, Record<string, any>> = {
-    boolean: { input: false, output: 'false' },
-    number: { input: 123, output: '123' },
-    string: { input: 'abc', output: "\"abc\"" },
-    array: { input: [1, 2, 3], output: "[\n    1,\n    2,\n    3\n]" },
-    object: { input: { id: 1 }, output: "{\n    \"id\": 1\n}" },
-};
-
 export const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
     { name: 'number', input: 123, output: false },

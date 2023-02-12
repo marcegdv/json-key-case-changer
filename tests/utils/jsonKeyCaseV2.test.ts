@@ -1,23 +1,19 @@
 /*
  * Lo mismo que los test del archivo V1, pero estrayendo los datos a un archivo separado.
 */
-import { convert, isList, isObject, isScalar, jstr } from "../../src/utils/jsonKeyCase";
-import { jstrDataTest, dataTest, convertDataTest } from './jsonKeyCaseV2DataSource';
+import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
+import { dataTest, convertDataTest } from './jsonKeyCaseV2DataSource';
 
 describe('jsonKeyCase functions test:', () => {
-    describe('jstr() tests:', () => {
-        test.each(Object.keys(jstrDataTest))('jstr with %s, return a string', (key: string) => {
-            expect(jstr(jstrDataTest[key].input)).toEqual(jstrDataTest[key].output);
-        });
-    });
-
-    describe('isScalar() tests:', () => {
+    describe('isValue() tests:', () => {
         const isScalarDataTest = [...dataTest];
         isScalarDataTest[0] = { ...dataTest[0] }; isScalarDataTest[0].output = true;
         isScalarDataTest[1] = { ...dataTest[1] }; isScalarDataTest[1].output = true;
         isScalarDataTest[2] = { ...dataTest[2] }; isScalarDataTest[2].output = true;
-        test.each(isScalarDataTest)('isScalar($name) = $output', ({ input, output }) => {
-            expect(isScalar(input)).toEqual(output);
+        isScalarDataTest[7] = { ...dataTest[7] }; isScalarDataTest[7].output = true;
+        isScalarDataTest[8] = { ...dataTest[8] }; isScalarDataTest[8].output = true;
+        test.each(isScalarDataTest)('isValue($name) = $output', ({ input, output }) => {
+            expect(isValue(input)).toEqual(output);
         });
     });
 

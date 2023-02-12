@@ -3,7 +3,7 @@
  * testear los mismos casos que en el archivo original.
 */
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import { convert, isList, isObject, isScalar, jstr } from "../../src/utils/jsonKeyCase";
+import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
 
 const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
@@ -19,26 +19,16 @@ const dataTest: any[] = [
 ];
 
 describe('jsonKeyCase functions test:', () => {
-    describe('jstr() tests:', () => {
-        const jstrDataTest: Record<string, Record<string, any>> = {
-            boolean: { input: false, output: 'false' },
-            number: { input: 123, output: '123' },
-            string: { input: 'abc', output: "\"abc\"" },
-            array: { input: [1, 2, 3], output: "[\n    1,\n    2,\n    3\n]" },
-            object: { input: { id: 1 }, output: "{\n    \"id\": 1\n}" },
-        };
-        test.each(Object.keys(jstrDataTest))('jstr with %s, return a string', (key: string) => {
-            expect(jstr(jstrDataTest[key].input)).toEqual(jstrDataTest[key].output);
-        });
-    });
 
-    describe('isScalar() tests:', () => {
+    describe('isValue() tests:', () => {
         const isScalarDataTest = [...dataTest];
         isScalarDataTest[0] = { ...dataTest[0] }; isScalarDataTest[0].output = true;
         isScalarDataTest[1] = { ...dataTest[1] }; isScalarDataTest[1].output = true;
         isScalarDataTest[2] = { ...dataTest[2] }; isScalarDataTest[2].output = true;
-        test.each(isScalarDataTest)('isScalar($name) = $output', ({ input, output }) => {
-            expect(isScalar(input)).toEqual(output);
+        isScalarDataTest[7] = { ...dataTest[7] }; isScalarDataTest[7].output = true;
+        isScalarDataTest[8] = { ...dataTest[8] }; isScalarDataTest[8].output = true;
+        test.each(isScalarDataTest)('isValue($name) = $output', ({ input, output }) => {
+            expect(isValue(input)).toEqual(output);
         });
     });
 
@@ -77,6 +67,8 @@ describe('jsonKeyCase functions test:', () => {
                     lastName: 'Doe',
                     userAliasesList: ['jd', 'Johny'],
                     location: { fullAddress: 'Fake street 123', city: 'LA', number: null },
+                    extraInfo: null,
+                    timeStamp: new Date,
                 },
                 strategy: snakeCase,
                 output: {
@@ -85,6 +77,8 @@ describe('jsonKeyCase functions test:', () => {
                     last_name: 'Doe',
                     user_aliases_list: ['jd', 'Johny'],
                     location: { full_address: 'Fake street 123', city: 'LA', number: null },
+                    extra_info: null,
+                    time_stamp: new Date,
                 }
             },
             {
@@ -104,4 +98,5 @@ describe('jsonKeyCase functions test:', () => {
             expect(convert(input, strategy)).toEqual(output);
         });
     });
+
 });
