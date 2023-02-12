@@ -19,6 +19,7 @@ export const main = (): number => {
                         user_name: 'user2',
                     },
                 ],
+                associated_tags: [ null, null, new Date],
                 description: null,
                 extra_object: {},
                 start: new Date,

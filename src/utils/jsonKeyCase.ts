@@ -7,10 +7,8 @@ export const isObject = (object: any): boolean => {
     return isObject && !isNull && !isList && !isDate;
 };
 
-export const isList = (list: any): boolean => list instanceof Array;
-
 export const convert = (input: any, strategy: Function): any => {
-    if (isList(input)) {
+    if (input instanceof Array) {
         return input.map((item: any) => convert(item, strategy));
     } else if (isObject(input)) {
         let converted: any = {};
