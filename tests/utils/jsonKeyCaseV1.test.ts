@@ -76,7 +76,7 @@ describe('jsonKeyCase functions test:', () => {
                     firstName: 'John',
                     lastName: 'Doe',
                     userAliasesList: ['jd', 'Johny'],
-                    location: { fullAddress: 'Fake street 123', city: 'LA' },
+                    location: { fullAddress: 'Fake street 123', city: 'LA', number: null },
                 },
                 strategy: snakeCase,
                 output: {
@@ -84,7 +84,7 @@ describe('jsonKeyCase functions test:', () => {
                     first_name: 'John',
                     last_name: 'Doe',
                     user_aliases_list: ['jd', 'Johny'],
-                    location: { full_address: 'Fake street 123', city: 'LA' },
+                    location: { full_address: 'Fake street 123', city: 'LA', number: null },
                 }
             },
             {
