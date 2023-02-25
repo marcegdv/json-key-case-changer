@@ -1,6 +1,6 @@
 ## v1.0.5
 
-- Casos de pruebas agregados.
+- Se simplificó el código.
 
 ## v1.0.4
 

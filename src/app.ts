@@ -19,11 +19,11 @@ export const main = (): number => {
                         user_name: 'user2',
                     },
                 ],
-                other: null,
+                associated_tags: [null, null, new Date],
+                description: null,
+                extra_object: {},
                 start: new Date,
-                end: new Date(3333, 21, 31, 23, 59, 59, 999),
-                extra_data: {},
-                other_tags: [],
+                end: new Date(3000, 11, 31, 12, 0, 0),
             },
         ];
 

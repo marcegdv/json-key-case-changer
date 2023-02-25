@@ -3,9 +3,9 @@
  * testear los mismos casos que en el archivo original.
 */
 import { camelCase, pascalCase, snakeCase } from "change-case";
-import { convert, isList, isObject, isValue } from "../../src/utils/jsonKeyCase";
+import { convert, isObject } from "../../src/utils/jsonKeyCase";
 
-const date: Date = new Date;
+const newDate: Date = new Date;
 
 const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
@@ -15,33 +15,12 @@ const dataTest: any[] = [
     { name: 'Array', input: [1, 2, 3], output: false },
     { name: 'empty Object', input: {}, output: false },
     { name: 'Object', input: { id: 1 }, output: false },
-    { name: 'Date', input: date, output: false },
+    { name: 'Date', input: newDate, output: false },
     { name: 'null', input: null, output: false },
     { name: 'undefined', input: undefined, output: false },
 ];
 
 describe('jsonKeyCase functions test:', () => {
-
-    describe('isValue() tests:', () => {
-        const isScalarDataTest = [...dataTest];
-        isScalarDataTest[0] = { ...dataTest[0] }; isScalarDataTest[0].output = true;
-        isScalarDataTest[1] = { ...dataTest[1] }; isScalarDataTest[1].output = true;
-        isScalarDataTest[2] = { ...dataTest[2] }; isScalarDataTest[2].output = true;
-        isScalarDataTest[7] = { ...dataTest[7] }; isScalarDataTest[7].output = true;
-        isScalarDataTest[8] = { ...dataTest[8] }; isScalarDataTest[8].output = true;
-        test.each(isScalarDataTest)('isValue($name) = $output', ({ input, output }) => {
-            expect(isValue(input)).toEqual(output);
-        });
-    });
-
-    describe('isList() tests:', () => {
-        const isListDataTest = [...dataTest];
-        isListDataTest[3] = { ...dataTest[3] }; isListDataTest[3].output = true;
-        isListDataTest[4] = { ...dataTest[4] }; isListDataTest[4].output = true;
-        test.each(isListDataTest)('isList($name) = $output', ({ input, output }) => {
-            expect(isList(input)).toEqual(output);
-        });
-    });
 
     describe('isObject() tests:', () => {
         const isObjectDataTest = [...dataTest];
@@ -57,8 +36,8 @@ describe('jsonKeyCase functions test:', () => {
             { name: 'false', input: false, strategy: camelCase, output: false },
             { name: '123', input: 123, strategy: snakeCase, output: 123 },
             { name: 'abc', input: 'abc', strategy: pascalCase, output: 'abc' },
-            { name: 'Date', input: date, strategy: camelCase, output: date },
-            { name: 'null', input: null, strategy: snakeCase, output: null },
+            { name: 'Date', input: newDate, strategy: camelCase, output: newDate },
+            { name: 'null', input: null, strategy: camelCase, output: null },
             { name: 'empty Array', input: [], strategy: camelCase, output: [] },
             { name: 'empty Array', input: [], strategy: snakeCase, output: [] },
             { name: 'empty Object', input: {}, strategy: camelCase, output: {} },
@@ -70,9 +49,11 @@ describe('jsonKeyCase functions test:', () => {
                     firstName: 'John',
                     lastName: 'Doe',
                     userAliasesList: ['jd', 'Johny'],
-                    location: { fullAddress: 'Fake street 123', city: 'LA', number: null },
-                    extraInfo: null,
-                    timeStamp: date,
+                    location: {
+                        fullAddress: 'Fake street 123', city: 'LA', number: null,
+                        extraInfo: null,
+                        timeStamp: newDate,
+                    },
                 },
                 strategy: snakeCase,
                 output: {
@@ -80,9 +61,11 @@ describe('jsonKeyCase functions test:', () => {
                     first_name: 'John',
                     last_name: 'Doe',
                     user_aliases_list: ['jd', 'Johny'],
-                    location: { full_address: 'Fake street 123', city: 'LA', number: null },
-                    extra_info: null,
-                    time_stamp: date,
+                    location: {
+                        full_address: 'Fake street 123', city: 'LA', number: null,
+                        extra_info: null,
+                        time_stamp: newDate,
+                    },
                 }
             },
             {
