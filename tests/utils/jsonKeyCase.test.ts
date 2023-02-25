@@ -47,19 +47,19 @@ describe('jsonKeyCase functions test:', () => {
     describe('convert tests:', () => {
 
         test('with an value and any strategy, return the value', () => {
-            const date: Date = new Date;
+            const newDate: Date = new Date;
             expect(convert(false, camelCase)).toEqual(false);
             expect(convert(123, snakeCase)).toEqual(123);
             expect(convert('abc', pascalCase)).toEqual('abc');
-            expect(convert(date, camelCase)).toEqual(date);
+            expect(convert(newDate, camelCase)).toEqual(newDate);
             expect(convert(null, snakeCase)).toEqual(null);
         });
         test('with a list of values and any startegy, return list of values', () => {
-            const date: Date = new Date;
+            const newDate: Date = new Date;
             expect(convert([false, true], camelCase)).toEqual([false, true]);
             expect(convert([1, 2, 3], snakeCase)).toEqual([1, 2, 3]);
             expect(convert(['abc', '123'], pascalCase)).toEqual(['abc', '123']);
-            expect(convert([date, date], camelCase)).toEqual([date, date]);
+            expect(convert([newDate, newDate], camelCase)).toEqual([newDate, newDate]);
             expect(convert([null, null], camelCase)).toEqual([null, null]);
         });
         test('with an empty list/object and any strategy, return the empty list/object', () => {
@@ -69,6 +69,7 @@ describe('jsonKeyCase functions test:', () => {
             expect(convert({}, snakeCase)).toEqual({});
         });
         test('with an object in camelCase and snake_case strategy, return same object in snake_case', () => {
+            const newDate: Date = new Date()
             const origin: any = {
                 id: 3,
                 firstName: 'John',
@@ -79,7 +80,7 @@ describe('jsonKeyCase functions test:', () => {
                 location: {
                     fullAddress: 'Fake street 123', city: 'LA', number: null,
                     extraInfo: null,
-                    timeStamp: new Date,
+                    timeStamp: newDate,
                 },
             };
             const expected: any = {
@@ -92,7 +93,7 @@ describe('jsonKeyCase functions test:', () => {
                 location: {
                     full_address: 'Fake street 123', city: 'LA', number: null,
                     extra_info: null,
-                    time_stamp: new Date,
+                    time_stamp: newDate,
                 },
             };
             expect(convert(origin, snakeCase)).toStrictEqual(expected);

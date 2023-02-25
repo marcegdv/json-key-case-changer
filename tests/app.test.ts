@@ -17,7 +17,6 @@ describe('jstr tests:', () => {
     });
 
     test('app.ts test:', () => {
-
         let ok: boolean = false;
         let exitCode: number = NaN;
         try {
@@ -29,7 +28,6 @@ describe('jstr tests:', () => {
         expect(ok).toEqual(true);
         expect(exitCode).toEqual(0);
         console.log('Best test ever was successful!');
-
     });
 
 });

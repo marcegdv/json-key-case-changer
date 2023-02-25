@@ -1,6 +1,6 @@
 import { camelCase, pascalCase, snakeCase } from "change-case";
 
-const date: Date = new Date;
+const newDate: Date = new Date;
 
 export const dataTest: any[] = [
     { name: 'boolean', input: false, output: false },
@@ -10,7 +10,7 @@ export const dataTest: any[] = [
     { name: 'Array', input: [1, 2, 3], output: false },
     { name: 'empty Object', input: {}, output: false },
     { name: 'Object', input: { id: 1 }, output: false },
-    { name: 'Date', input: date, output: false },
+    { name: 'Date', input: newDate, output: false },
     { name: 'null', input: null, output: false },
     { name: 'undefined', input: undefined, output: false },
 ];
@@ -19,7 +19,7 @@ export const convertDataTest: any[] = [
     { name: 'false', input: false, strategy: camelCase, output: false },
     { name: '123', input: 123, strategy: snakeCase, output: 123 },
     { name: 'abc', input: 'abc', strategy: pascalCase, output: 'abc' },
-    { name: 'Date', input: date, strategy: camelCase, output: date },
+    { name: 'Date', input: newDate, strategy: camelCase, output: newDate },
     { name: 'null', input: null, strategy: camelCase, output: null },
     { name: 'empty Array', input: [], strategy: camelCase, output: [] },
     { name: 'empty Array', input: [], strategy: snakeCase, output: [] },
@@ -35,7 +35,7 @@ export const convertDataTest: any[] = [
             location: {
                 fullAddress: 'Fake street 123', city: 'LA', number: null,
                 extraInfo: null,
-                timeStamp: date,
+                timeStamp: newDate,
             },
         },
         strategy: snakeCase,
@@ -47,7 +47,7 @@ export const convertDataTest: any[] = [
             location: {
                 full_address: 'Fake street 123', city: 'LA', number: null,
                 extra_info: null,
-                time_stamp: date,
+                time_stamp: newDate,
             },
         }
     },
